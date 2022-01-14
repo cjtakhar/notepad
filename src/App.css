@@ -1,0 +1,20 @@
+body {
+  margin: 0, auto;
+}
+
+h1 {
+  font-family: 'Anton',
+  sans-serif;
+  font-size: 4rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notepad {
+  margin: 0 15%;
+  height: 1000px;
+}
