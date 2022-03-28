@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function Login() {
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const renderErrorMessage = (name) =>
-        name === errorMessages.name && (
-            <div className="error">{errorMessages.message}</div>
-        );
 
     const database = [
         {
@@ -43,9 +39,14 @@ export default function Login() {
             setErrorMessages({name: "uname", message: errors.uname});
         }
     };
+
+    const renderErrorMessage = (name) =>
+        name === errorMessages.name && (
+        <div className="error">{errorMessages.message}</div>
+        );
     
-    return(
-        <div className="form">
+    const renderForm = (
+          <div className="form">
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Username</label>
@@ -60,7 +61,14 @@ export default function Login() {
                 <div className="button-container">
                     <input type="submit" />
                 </div>
-            </form>            
+            </form>
         </div>
     )
-}
+    return (
+       <div className="login-form">
+            <div classsName="title">Sign In</div>
+            {isSubmitted ? History.pushState("/notepad") : renderForm}
+        </div>
+    )
+};
+
