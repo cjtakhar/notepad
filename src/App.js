@@ -1,18 +1,26 @@
+import React from 'react';
+import Login from './components/login';
+import Notepad from './components/notepad';
 import './App.css';
+import {
+  Route,
+  BrowserRouter as Router,
+} from "react-router-dom";
 
-const greetings = "Hello World";
-
-function App() {
+export default function App() {
   return (
     <div>
-      <div className="title">
-        <h1 contentEditable="true">{greetings}</h1>
-      </div>
-      <div className="notepad">
-        <p contentEditable="true">write something.</p>
-      </div>
+       <Router>
+          <div>
+           <Route exact path="/">
+              < Login />
+            </Route>
+            <Route exact path="/notepad">
+              < Notepad />
+            </Route>
+       </div>
+    </Router>
     </div>
+   
   );
 }
-
-export default App;
