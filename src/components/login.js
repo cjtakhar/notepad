@@ -7,9 +7,46 @@ export default function Login() {
         name === errorMessages.name && (
             <div className="error">{errorMessages.message}</div>
         );
+
+    const database = [
+        {
+            username: "user1",
+            password: "pass1"
+        },
+        {
+            username: "user2",
+            password: "pass2"
+        }
+    ];
+
+    const errors = {
+        uname: "invalid username",
+        pass: "invalid password"
+    };
+
+    const handleSubmit = (event) => {
+        // prevent page reload
+        event.preventDefault();
+        var { uname, pass } = document.forms[0]
+        // find user login info
+        const userData = database.find((user) => user.username === uname.value) 
+        // compare user info
+        if (userData) {
+            if (userData.password !== pass.value) {
+                // invalid password
+                setErrorMessages({name: "pass", message: errors.pass});
+            } else {
+                setIsSubmitted(true);
+            }
+        }   else {
+            // username not found
+            setErrorMessages({name: "uname", message: errors.uname});
+        }
+    };
+    
     return(
         <div className="form">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Username</label>
                     <input type="text" name="uname" required />
